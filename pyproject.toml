@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "Quell"
+version = "0.1.0"
+description = "An app to train U-Net models to denoise images by supervised learning."
+authors = [
+    "Ashkan Pakzad",
+    "Robert Turnbull <robert.turnbull@unimelb.edu.au>",
+    "Simon Mutch",
+    "Tim Gureyev"
+]
+license = "Apache-2.0"
+readme = "README.rst"
+repository = "https://github.com/quell-devs/quell/"
+documentation = "https://quell-devs.github.io/quell"
+homepage = "https://github.com/quell-devs/quell/"
+keywords = ["fastai", "torchapp", "pytorch", "deep learning", "command-line interface", "denoising", "3D images"]
+# For classifiers see https://pypi.org/classifiers/
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+packages = [
+    { include = "quell" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+torchapp = ">=0.3.10"
+pytorch-msssim = "^1.0.0"
+scipy = "^1.14.1"
+pydicom = "^2.4.4"
+tifffile = "^2024.8.30"
+fasttransform = "^0.0.2"
+numpy = "^2.2.5"
+pynrrd = "^1.1.3"
+scikit-image = "^0.25.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^6.2.5"
+ipykernel = "^6.6.1"
+coverage = "^5.5"
+autopep8 = "^1.5.7"
+Sphinx = "^4.2.0"
+nbsphinx = "^0.8.7"
+sphinx-rtd-theme = "^1.0.0"
+sphinx-autobuild = "^2021.3.14"
+myst-parser = "^0.15.2"
+pre-commit = "^2.15.0"
+sphinx-copybutton = "^0.4.0"
+black = "^21.10b0"
+sphinx-click = {git = "https://github.com/rbturnbull/sphinx-click.git"}
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+quell = "quell.apps:Quell.main"
+quell-identity = "quell.apps:QuellIdentity.main"
+quell-sample-data = "scripts.create_sample_data:main"
+quell-preview-data = "scripts.preview_sample_data:main"
